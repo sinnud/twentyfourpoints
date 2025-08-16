@@ -41,7 +41,7 @@ def safe_eval(expression, allowed_numbers):
 
 def single_play():
     TARGET_SCORE = 24
-    print("=" * 50)
+    print("=" * 30 + " Single Player Mode " + "=" * 30)
     print("Welcome to Twenty Four Points! Single player mode.")
     solution = None
     while not solution:
@@ -66,7 +66,7 @@ def single_play():
             print("You must use each card number exactly once.")
             print(f"You lose. Invalid numbers used.")
             print(f"A possible solution is: {solution}")
-            print("=" * 50)
+            print("=" * 30 + " ####### END ###### " + "=" * 30)
             return answer
         
         result = safe_eval(answer, numbers)
@@ -85,7 +85,7 @@ def single_play():
         print(f"Invalid input {answer}.")
         print("You lose.")
         print(f"A possible solution is: {solution}")
-    print("=" * 50)
+    print("=" * 30 + " ####### END ###### " + "=" * 30)
     return answer
 
 if __name__ == "__main__":

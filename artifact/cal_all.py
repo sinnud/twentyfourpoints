@@ -1,4 +1,4 @@
-import os, sys, itertools
+import os, sys, itertools, ast
 
 ROOT_PATH = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.append(os.path.join(ROOT_PATH, 'src'))
@@ -10,7 +10,7 @@ def solution():
     noans_file = os.path.join(ROOT_PATH, "artifact", "no_answer.txt")
     with open(input_file, "r") as fin, open(output_file, "w") as fout, open(noans_file, "w") as fn:
         for line in fin:
-            numbers = eval(line.strip())  # Convert string like [2, 3, 4, 5] to list
+            numbers = ast.literal_eval(line.strip())  # Convert string like [2, 3, 4, 5] to list
             result, expr = try_all_expressions(numbers)
             if result:
                 fout.write(f"{numbers}: {expr}\n")

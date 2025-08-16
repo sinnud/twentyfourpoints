@@ -1,4 +1,4 @@
-from src.core_calculate import try_all_expressions
+from src.core_calculate import try_all_expressions, TARGET_SCORE
 
 def expert_help():
     print("-" * 50)
@@ -17,7 +17,7 @@ def expert_help():
 
     found, solution = try_all_expressions(numbers)
     if found:
-        print(f"Solution: {solution} = 24")
+        print(f"Solution: {solution} = {TARGET_SCORE}")
     else:
         print("I can not solve it.")
     print("-" * 50)

@@ -1,6 +1,8 @@
 import itertools
 import operator
 
+TARGET_SCORE = 24
+
 ops = [
     ('+', operator.add),
     ('-', operator.sub),
@@ -28,7 +30,7 @@ def try_all_expressions(nums):
                 if op2[0] == '/' and not valid_div(first, c): continue
                 result = op3[1](second, d)
                 if op3[0] == '/' and not valid_div(second, d): continue
-                if abs(result - 24) < 1e-6:
+                if abs(result - TARGET_SCORE) < 1e-6:
                     expr = f"(({a} {op1[0]} {b}) {op2[0]} {c}) {op3[0]} {d}"
                     return True, expr
             except ZeroDivisionError:
@@ -42,7 +44,7 @@ def try_all_expressions(nums):
                 if op1[0] == '/' and not valid_div(a, first): continue
                 result = op3[1](second, d)
                 if op3[0] == '/' and not valid_div(second, d): continue
-                if abs(result - 24) < 1e-6:
+                if abs(result - TARGET_SCORE) < 1e-6:
                     expr = f"({a} {op1[0]} ({b} {op2[0]} {c})) {op3[0]} {d}"
                     return True, expr
             except ZeroDivisionError:
@@ -56,7 +58,7 @@ def try_all_expressions(nums):
                 if op3[0] == '/' and not valid_div(first, d): continue
                 result = op1[1](a, second)
                 if op1[0] == '/' and not valid_div(a, second): continue
-                if abs(result - 24) < 1e-6:
+                if abs(result - TARGET_SCORE) < 1e-6:
                     expr = f"{a} {op1[0]} (({b} {op2[0]} {c}) {op3[0]} {d})"
                     return True, expr
             except ZeroDivisionError:
@@ -70,7 +72,7 @@ def try_all_expressions(nums):
                 if op2[0] == '/' and not valid_div(b, first): continue
                 result = op1[1](a, second)
                 if op1[0] == '/' and not valid_div(a, second): continue
-                if abs(result - 24) < 1e-6:
+                if abs(result - TARGET_SCORE) < 1e-6:
                     expr = f"{a} {op1[0]} ({b} {op2[0]} ({c} {op3[0]} {d}))"
                     return True, expr
             except ZeroDivisionError:
@@ -84,7 +86,7 @@ def try_all_expressions(nums):
                 if op3[0] == '/' and not valid_div(c, d): continue
                 result = op2[1](first, second)
                 if op2[0] == '/' and not valid_div(first, second): continue
-                if abs(result - 24) < 1e-6:
+                if abs(result - TARGET_SCORE) < 1e-6:
                     expr = f"({a} {op1[0]} {b}) {op2[0]} ({c} {op3[0]} {d})"
                     return True, expr
             except ZeroDivisionError:
@@ -95,10 +97,10 @@ def try_all_expressions(nums):
 def calculate_24(nums):
     found, expr = try_all_expressions(nums)
     if found:
-        print(f"Found a solution: {expr} = 24")
+        print(f"Found a solution: {expr} = {TARGET_SCORE}")
         return True
     else:
-        print(f"Cannot get 24 with these numbers {nums}.")
+        print(f"Cannot get {TARGET_SCORE} with these numbers {nums}.")
         return False
 
 if __name__ == "__main__":
